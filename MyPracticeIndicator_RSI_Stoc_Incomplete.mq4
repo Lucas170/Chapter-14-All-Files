@@ -15,28 +15,28 @@
 //--- Property Area ---
 
 // TDL 1: Edit Property Area
-#property indicator_separate_window // Alternative: indicator_separate_window
-#property indicator_buffers 3  // Number of Buffers. Aka number of lines/chart objects to be drawn
-#property indicator_color1 Aqua  // If you have more than 1 buffers, add indicator_color2, indicator_color3 etc
-#property indicator_color2 Red
-#property indicator_color3 Yellow
+#property indicator_chart_window // Alternative: indicator_separate_window
+#property indicator_buffers 1  // Number of Buffers. Aka number of lines/chart objects to be drawn
+#property indicator_color1  // If you have more than 1 buffers, add indicator_color2, indicator_color3 etc
+
 
 //--- Extern Variables ---
 
 // TDL 2: Input Extern Variables
 
-extern int InpRSIPeriod=14;
-extern int InpKPeriod=5; // K Period
-extern int InpDPeriod=3; // D Period
-extern int InpSlowing=3; // Slowing
+
+
+
+
 
 //--- Buffers (Arrays to store the indicator data) ---
 
 // TDL 3: Declare Buffers
 
-double ExtRSIBuffer[];
-double ExtStocBufferA[];
-double ExtStocBufferB[];
+
+
+
+
 
 //--- Declare variables ---
 int limit, i;
@@ -49,13 +49,9 @@ int init() // Runs once when indicator is executed on chart
 //--- Set Buffer(s) details. See http://docs.mql4.com/customind
 
 // TDL 4: Set settings for buffers
-   SetIndexBuffer(0, ExtRSIBuffer); 
+   SetIndexBuffer(0, ); 
    SetIndexStyle(0, DRAW_LINE, STYLE_SOLID, 1); // Optional, if not set. Then buffer will be a default width 1 line. See http://docs.mql4.com/customind/setindexstyle. 
-   SetIndexBuffer(1, ExtStocBufferA); 
-   SetIndexStyle(1, DRAW_LINE, STYLE_SOLID, 1);
-   SetIndexBuffer(2, ExtStocBufferB); 
-   SetIndexStyle(2, DRAW_LINE, STYLE_SOLID, 1);
-
+ 
 //----
    return(0);
   }
@@ -93,13 +89,11 @@ int start() // Runs on every tick
 
 //--- Calculate and Assign Values to Buffer ---
      
-// TDL 5: Calculate and Assign Values to the 3 Buffers
+// TDL 4: Calculate and Assign Values to the 3 Buffers
      
    for(i=limit; i>=0; i--) { // This is where we calculate our Indicator value and place them in our Buffer(s)
-      
-      ExtRSIBuffer[i]=iRSI(NULL, 0, InpRSIPeriod, PRICE_CLOSE, i);
-      ExtStocBufferA[i]=iStochastic(NULL, 0, InpKPeriod, InpDPeriod, InpSlowing, MODE_SMA, 0, 0, i);  
-      ExtStocBufferB[i]=iStochastic(NULL, 0, InpKPeriod, InpDPeriod, InpSlowing, MODE_SMA, 0, 1, i);
+
+ 
 
    }
  
